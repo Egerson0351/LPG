@@ -8,6 +8,7 @@ from pprint import pprint
 import os
 import sys
 import chardet
+from copy import deepcopy
 
 def check_encoding(path):
     rawdata = open(path, 'rb').read()
@@ -92,6 +93,10 @@ class cleanData2:
             "Short Legal Description": [],
             "Assessed Value" : [],
             "Back Taxes" : [],
+            "__Full Name__" : [],
+            "__Full_Situs__" : [],
+            "__Full_Mail__" : [],
+            
             }
         
         self.map = {
@@ -126,7 +131,7 @@ class cleanData2:
             "COUNTY",
             "SITUS STATE",
                       ]
-        self.drop_log = self.cleaned_data.copy()
+        self.drop_log = deepcopy(self.cleaned_data)
         self.error_log = {}
         self.count = 0
         #print(self.Input)
@@ -159,6 +164,10 @@ class cleanData2:
         #     )
         for index, row in self.raw_data.iterrows(): 
             self._update_cleaned(row)
+            
+        self.cleaned_data = p.DataFrame.from_dict(self.cleaned_data)
+        self.drop_log = p.DataFrame.from_dict(self.drop_log)
+        self._remove_duplicates()
     
     def render(self):
         
@@ -166,11 +175,10 @@ class cleanData2:
         path = self.Output / name
         
         drop_path = self.Output /"Dropped"/ f"{self.Input.stem}_dropped.csv"
-        cleaned_data = p.DataFrame.from_dict(self.cleaned_data)
-        drop_log = p.DataFrame.from_dict(self.drop_log)
+
         
-        cleaned_data.to_csv(str(path)) 
-        drop_log.to_csv(str(drop_path))
+        self.cleaned_data.to_csv(str(path)) 
+        self.drop_log.to_csv(str(drop_path))
     
     def _update_cleaned(self, row):
         self.count += 1
@@ -181,25 +189,31 @@ class cleanData2:
             for row_name in self.map:
                 
                 value = str(row[row_name]).strip()
-                if value == "nan":
+                if value.lower() == "nan":
                     value = ""
-                
+                    row[row_name] = value
                 self.cleaned_data[self.map[row_name]].append(value)
 
             if bool(re.search("trust",row["OWNER 1 LAST NAME"], re.IGNORECASE)):
                 self.cleaned_data["Type"].append("Company")
                 self.cleaned_data["Company"].append(row["OWNER 1 LAST NAME"])
+                self.cleaned_data["First Name"][-1] = row["OWNER 2 FIRST NAME"]
+                self.cleaned_data["Last Name"][-1] = row["OWNER 2 LAST NAME"]
+            
             else:
                 self.cleaned_data["Type"].append("Individual")
                 self.cleaned_data["Company"].append("")
-                    
-                    
-                    
+            
+            self.cleaned_data["__Full Name__"].append(f'{self.cleaned_data["First Name"][-1]} {self.cleaned_data["Last Name"][-1]}')
+            self.cleaned_data["__Full_Situs__"].append(f'{self.cleaned_data["Property Address"][-1]}{self.cleaned_data["Property City"][-1]}{self.cleaned_data["Property County"][-1]}{self.cleaned_data["Property State"][-1]}{self.cleaned_data["Property Zip"][-1]}')
+            self.cleaned_data["__Full_Mail__"].append(f'{self.cleaned_data["Address"][-1]}{self.cleaned_data["City"][-1]}{self.cleaned_data["State"][-1]}{self.cleaned_data["Zip"][-1]}')
+            
         else:
             for row_name in self.map:
                 value = str(row[row_name]).strip()
-                if value == "nan":
+                if value.lower() == "nan":
                     value = ""
+                    row[row_name] = value
                 
                 self.drop_log[self.map[row_name]].append(value)
 
@@ -212,18 +226,47 @@ class cleanData2:
             else:
                 self.drop_log["Type"].append("Company")
                 self.drop_log["Company"].append(row["OWNER 1 LAST NAME"])
+                self.drop_log["First Name"][-1] = row["OWNER 2 FIRST NAME"]
+                self.drop_log["Last Name"][-1] = row["OWNER 2 LAST NAME"]
+            
+            self.drop_log["__Full Name__"].append(f'{self.drop_log["First Name"][-1]} {self.drop_log["Last Name"][-1]}')
+            self.drop_log["__Full_Situs__"].append(f'{self.drop_log["Property Address"][-1]} \
+                {self.drop_log["Property City"][-1]} {self.drop_log["Property County"][-1]} {self.drop_log["Property State"][-1]}\
+                    {self.drop_log["Property Zip"][-1]}')
+            self.drop_log["__Full_Mail__"].append(f'{self.drop_log["Address"][-1]} \
+                {self.drop_log["City"][-1]} {self.drop_log["State"][-1]}\
+                    {self.drop_log["Zip"][-1]}')
             
     
     def _check_row(self, row):
+        found = []
         for ii in self.must_haves:
             value = str(row[ii]).strip()
-            if value == "nan":
+            if value.lower() == "nan":
                 value = ""
                 row[ii] = value
             
             if not bool(len(row[ii])):
-                return False
-        return True
+                found.append(False)
+            else:
+                found.append(True)
+        
+        if not any([found[0], found[1]]):
+            return False
+        elif not all(found[2:]):
+            return False
+        else:
+            return True
+    
+    def _remove_duplicates(self):
+        
+        self.cleaned_data = self.cleaned_data.drop_duplicates(
+            subset = ["__Full Name__", "__Full_Situs__", "__Full_Mail__", "APN" ],
+            keep="first"
+            )
+        
+        self.drop_log = self.drop_log.drop(columns = ["__Full Name__", "__Full_Situs__", "__Full_Mail__", "APN" ])
+        
             
                 
             
@@ -432,7 +475,7 @@ def terminalRun():
 if __name__ == "__main__":
     print(__file__)
     if not terminalRun():
-        cd = CleanData_runner("/Users/eitangerson/Library/Mobile Documents/com~apple~CloudDocs/LPG/Exported Data/Raw")
+        cd = CleanData_runner("/Users/eitangerson/Desktop/LPG/Exported Data/Merged")
         cd.run()
         
 
