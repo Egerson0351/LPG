@@ -72,27 +72,49 @@ class cleanData2:
             
         self.raw_data = None
         self.cleaned_data = {
-            "Type" : [],
-            "First Name": [],
-            "Last Name": [],
-            "2nd Owner’s First Name" : [],
-            "2nd Owner’s Last Name" : [],
-            "Company" : [],
-            "Address" : [],
-            "City" : [],
-            "State" : [],
-            "Zip" : [],
-            "APN" : [],
-            "Property Address" : [],
-            "Property City" : [],
-            "Property County": [],
-            "Property State" : [],
-            "Property Zip" : [],
-            "Property Size" : [],
-            "Zoning": [],
-            "Short Legal Description": [],
-            "Assessed Value" : [],
-            "Back Taxes" : [],
+        	"Type" : [],
+        	"First Name" : [],
+        	"Last Name" : [],
+        	"Company" : [],
+        	"Email" : [],
+        	"Phone" : [],
+        	"Phone 2" : [],
+        	"Fax" : [],
+        	"Address" : [],
+        	"Address 2" : [],
+        	"City" : [],
+        	"State" : [],
+        	"Zip" : [],
+        	"APN" : [],
+        	"Property Address" : [],
+        	"Property City" : [],
+        	"Property County" : [],
+        	"Property State" : [],
+        	"Property Zip" : [],
+        	"Property Size" : [],
+        	"Short Legal Description" : [],
+        	"Offer Amount" : [],
+        	"Option Amount" : [],
+        	"Market Value" : [],
+        	"Assessed Value" : [],
+        	"Repair Estimate" : [],
+        	"Back Taxes" : [],
+        	"Tags" : [],
+        	"Owner's First Name" : [],
+        	"Owner's Last Name" : [],
+        	"2nd Owner's First Name" : [],
+        	"2nd Owner's Last Name" : [],
+        	"3rd Owner's First Name" : [],
+        	"3rd Owner's Last Name" : [],
+        	"4th Owner's First Name" : [],
+        	"4th Owner's Last Name" : [],
+        	"5th Owner's First Name" : [],
+        	"5th Owner's Last Name" : [],
+        	"Zoning" : [],
+        	"Offer Accept By" : [],
+        	"Option Accept By" : [],
+        	"Option Expires On" : [],
+        	"Offer Expires On (Close of Escrow)" : [],
             "__Full Name__" : [],
             "__Full_Situs__" : [],
             "__Full_Mail__" : [],
@@ -102,8 +124,8 @@ class cleanData2:
         self.map = {
             "OWNER 1 FIRST NAME" : "First Name",
             "OWNER 1 LAST NAME" : "Last Name",
-            "OWNER 2 FIRST NAME" : "2nd Owner’s First Name",
-            "OWNER 2 LAST NAME" : "2nd Owner’s Last Name",
+            "OWNER 2 FIRST NAME" : "2nd Owner's First Name",
+            "OWNER 2 LAST NAME" : "2nd Owner's Last Name",
             "MAILING STREET ADDRESS" : "Address",
             "MAIL CITY" : "City",
             "MAIL STATE" : "State",
@@ -148,12 +170,14 @@ class cleanData2:
     
     def read(self):
         
-
+        print(self.Input)
         if str(self.Input).endswith("csv"):
             #check_encoding(self.Input)
             self.raw_data = p.read_csv(self.Input)
         else:
-            raise Exception(f"Unknown data format >> {self.Input}")
+            self.raw_data = p.read_table(self.Input)
+            #raise Exception(f"Unknown data format >> {self.Input}")
+            
 
     
     def clean(self):
@@ -164,7 +188,7 @@ class cleanData2:
         #     )
         for index, row in self.raw_data.iterrows(): 
             self._update_cleaned(row)
-            
+        self._update_cols()
         self.cleaned_data = p.DataFrame.from_dict(self.cleaned_data)
         self.drop_log = p.DataFrame.from_dict(self.drop_log)
         self._remove_duplicates()
@@ -182,7 +206,7 @@ class cleanData2:
     
     def _update_cleaned(self, row):
         self.count += 1
-        print(self.count)
+        #print(self.count)
         
         if self._check_row(row):
         
@@ -264,10 +288,20 @@ class cleanData2:
             subset = ["__Full Name__", "__Full_Situs__", "__Full_Mail__", "APN" ],
             keep="first"
             )
-        
+        self.cleaned_data = self.cleaned_data.drop(columns = ["__Full Name__", "__Full_Situs__", "__Full_Mail__", "APN" ])
         self.drop_log = self.drop_log.drop(columns = ["__Full Name__", "__Full_Situs__", "__Full_Mail__", "APN" ])
         
-            
+    def _update_cols(self):
+        for val in ["cleaned_data", "drop_log"]:
+            attr = getattr(self, val)
+            len_data = len(attr["__Full Name__"])
+            for kk in attr.keys():
+                if len(attr[kk]) != len_data:
+                       attr[kk] = [""] * len_data
+        
+        
+        
+                   
                 
             
         
@@ -448,8 +482,17 @@ class cleanData:
         return Output
         
             
+def readintemplate(path):
+    raw_data = p.read_csv(path)
+    print("x = {")
+    for ii in raw_data.columns:
+        print(f"\t\"{ii}\" : [],")
 
+    
+    
+    
 
+    
     
     
 
@@ -473,9 +516,16 @@ def terminalRun():
     
     
 if __name__ == "__main__":
+    
+    #  ------ Debug
+    #readintemplate("/Users/eitangerson/Desktop/LPG/SAMPLE-IMPORT-LIST.csv")
+    
+    
+    # ------ Debug
     print(__file__)
     if not terminalRun():
-        cd = CleanData_runner("/Users/eitangerson/Desktop/LPG/Exported Data/Merged")
+        cd = CleanData_runner("Raw/Lee1_all.csv")
+        #cd = CleanData_runner("/Users/eitangerson/Desktop/LPG/Exported Data/Merged")
         cd.run()
         
 
