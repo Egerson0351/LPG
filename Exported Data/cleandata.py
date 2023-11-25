@@ -9,8 +9,14 @@ import os
 import sys
 import chardet
 from copy import deepcopy
+import openpyxl
+from inspect import currentframe
 
+def DB_PRINT(current_function_name):
+    print(f"\t[{current_function_name}]: entering...")
+    
 def check_encoding(path):
+    DB_PRINT(currentframe().f_code.co_name)
     rawdata = open(path, 'rb').read()
     result = chardet.detect(rawdata)
     Print(result)
@@ -22,6 +28,7 @@ class CleanData_runner:
         self.recurse = recurse
 
     def run(self):
+        DB_PRINT(currentframe().f_code.co_name)
         if os.path.isfile(self.Input):
             CD = cleanData2(self.Input, self.Output)
             CD.run()
@@ -41,6 +48,7 @@ class CleanData_runner:
                 
     
     def _newOutput(self, Output):
+        DB_PRINT(currentframe().f_code.co_name)
         if not bool(Output):
             if os.path.isfile(self.Input):
                 Output = self.Input.parent.parent / "Cleaned"
@@ -59,7 +67,9 @@ class CleanData_runner:
     
 
 class cleanData2:
+    
     def __init__(self, Input, Output = None):
+        DB_PRINT(currentframe().f_code.co_name)
         if isinstance(Input, PurePath):
             self.Input = Input
         else:
@@ -72,27 +82,49 @@ class cleanData2:
             
         self.raw_data = None
         self.cleaned_data = {
-            "Type" : [],
-            "First Name": [],
-            "Last Name": [],
-            "2nd Owner’s First Name" : [],
-            "2nd Owner’s Last Name" : [],
-            "Company" : [],
-            "Address" : [],
-            "City" : [],
-            "State" : [],
-            "Zip" : [],
-            "APN" : [],
-            "Property Address" : [],
-            "Property City" : [],
-            "Property County": [],
-            "Property State" : [],
-            "Property Zip" : [],
-            "Property Size" : [],
-            "Zoning": [],
-            "Short Legal Description": [],
-            "Assessed Value" : [],
-            "Back Taxes" : [],
+        	"Type" : [],
+        	"First Name" : [],
+        	"Last Name" : [],
+        	"Company" : [],
+        	"Email" : [],
+        	"Phone" : [],
+        	"Phone 2" : [],
+        	"Fax" : [],
+        	"Address" : [],
+        	"Address 2" : [],
+        	"City" : [],
+        	"State" : [],
+        	"Zip" : [],
+        	"APN" : [],
+        	"Property Address" : [],
+        	"Property City" : [],
+        	"Property County" : [],
+        	"Property State" : [],
+        	"Property Zip" : [],
+        	"Property Size" : [],
+        	"Short Legal Description" : [],
+        	"Offer Amount" : [],
+        	"Option Amount" : [],
+        	"Market Value" : [],
+        	"Assessed Value" : [],
+        	"Repair Estimate" : [],
+        	"Back Taxes" : [],
+        	"Tags" : [],
+        	"Owner's First Name" : [],
+        	"Owner's Last Name" : [],
+        	"2nd Owner's First Name" : [],
+        	"2nd Owner's Last Name" : [],
+        	"3rd Owner's First Name" : [],
+        	"3rd Owner's Last Name" : [],
+        	"4th Owner's First Name" : [],
+        	"4th Owner's Last Name" : [],
+        	"5th Owner's First Name" : [],
+        	"5th Owner's Last Name" : [],
+        	"Zoning" : [],
+        	"Offer Accept By" : [],
+        	"Option Accept By" : [],
+        	"Option Expires On" : [],
+        	"Offer Expires On (Close of Escrow)" : [],
             "__Full Name__" : [],
             "__Full_Situs__" : [],
             "__Full_Mail__" : [],
@@ -102,8 +134,8 @@ class cleanData2:
         self.map = {
             "OWNER 1 FIRST NAME" : "First Name",
             "OWNER 1 LAST NAME" : "Last Name",
-            "OWNER 2 FIRST NAME" : "2nd Owner’s First Name",
-            "OWNER 2 LAST NAME" : "2nd Owner’s Last Name",
+            "OWNER 2 FIRST NAME" : "2nd Owner's First Name",
+            "OWNER 2 LAST NAME" : "2nd Owner's Last Name",
             "MAILING STREET ADDRESS" : "Address",
             "MAIL CITY" : "City",
             "MAIL STATE" : "State",
@@ -137,6 +169,7 @@ class cleanData2:
         #print(self.Input)
     
     def run(self):
+        DB_PRINT(currentframe().f_code.co_name)
         #try:
         self.read()
         self.clean()
@@ -153,10 +186,42 @@ class cleanData2:
             #check_encoding(self.Input)
             self.raw_data = p.read_csv(self.Input)
         else:
-            raise Exception(f"Unknown data format >> {self.Input}")
-
+            self.raw_data = p.DataFrame(self.read_xlsx())
+            #self.raw_data = p.read_table(self.Input, encoding='utf_32_le')
+            #raise Exception(f"Unknown data format >> {self.Input}")
+            for i in range(0,2):
+                print(self.raw_data[i])
+    def read_xlsx(self):
+        DB_PRINT(currentframe().f_code.co_name)
+        # Load the Excel workbook
+        workbook = openpyxl.load_workbook(self.Input)
     
+        # Select the active sheet (you can also specify the sheet by name)
+        sheet = workbook.active
+    
+        # Get the dimensions of the sheet
+        max_row = sheet.max_row
+        max_col = sheet.max_column
+    
+        # Create a list to store the data
+        data = []
+    
+        # Iterate through the rows and columns to extract data
+        for row in range(1, max_row + 1):
+            row_data = []
+            for col in range(1, max_col + 1):
+                cell_value = sheet.cell(row=row, column=col).value
+                row_data.append(cell_value)
+            data.append(row_data)
+    
+        # Close the workbook
+        workbook.close()
+    
+        return data
+
+            
     def clean(self):
+        DB_PRINT(currentframe().f_code.co_name)
         # self.raw_data.drop_duplicates(
         #     subset = ["OWNER 1 FULL NAME", "OWNER 2 FULL NAME", "OWNER 3 FULL NAME"],
         #     keep="first",
@@ -164,13 +229,13 @@ class cleanData2:
         #     )
         for index, row in self.raw_data.iterrows(): 
             self._update_cleaned(row)
-            
+        self._update_cols()
         self.cleaned_data = p.DataFrame.from_dict(self.cleaned_data)
         self.drop_log = p.DataFrame.from_dict(self.drop_log)
         self._remove_duplicates()
     
     def render(self):
-        
+        DB_PRINT(currentframe().f_code.co_name)
         name = self.Input.stem + "_cleaned.csv"
         path = self.Output / name
         
@@ -181,8 +246,9 @@ class cleanData2:
         self.drop_log.to_csv(str(drop_path))
     
     def _update_cleaned(self, row):
+        DB_PRINT(currentframe().f_code.co_name)
         self.count += 1
-        print(self.count)
+        #print(self.count)
         
         if self._check_row(row):
         
@@ -239,6 +305,7 @@ class cleanData2:
             
     
     def _check_row(self, row):
+        DB_PRINT(currentframe().f_code.co_name)
         found = []
         for ii in self.must_haves:
             value = str(row[ii]).strip()
@@ -259,15 +326,25 @@ class cleanData2:
             return True
     
     def _remove_duplicates(self):
-        
+        DB_PRINT(currentframe().f_code.co_name)
         self.cleaned_data = self.cleaned_data.drop_duplicates(
             subset = ["__Full Name__", "__Full_Situs__", "__Full_Mail__", "APN" ],
             keep="first"
             )
-        
+        self.cleaned_data = self.cleaned_data.drop(columns = ["__Full Name__", "__Full_Situs__", "__Full_Mail__", "APN" ])
         self.drop_log = self.drop_log.drop(columns = ["__Full Name__", "__Full_Situs__", "__Full_Mail__", "APN" ])
         
-            
+    def _update_cols(self):
+        for val in ["cleaned_data", "drop_log"]:
+            attr = getattr(self, val)
+            len_data = len(attr["__Full Name__"])
+            for kk in attr.keys():
+                if len(attr[kk]) != len_data:
+                       attr[kk] = [""] * len_data
+        
+        
+        
+                   
                 
             
         
@@ -448,8 +525,17 @@ class cleanData:
         return Output
         
             
+def readintemplate(path):
+    raw_data = p.read_csv(path)
+    print("x = {")
+    for ii in raw_data.columns:
+        print(f"\t\"{ii}\" : [],")
 
+    
+    
+    
 
+    
     
     
 
@@ -473,9 +559,15 @@ def terminalRun():
     
     
 if __name__ == "__main__":
+    
+    #  ------ Debug
+    #readintemplate("/Users/eitangerson/Desktop/LPG/SAMPLE-IMPORT-LIST.csv")
+    
+    
+    # ------ Debug
     print(__file__)
     if not terminalRun():
-        cd = CleanData_runner("/Users/eitangerson/Desktop/LPG/Exported Data/Merged")
+        cd = CleanData_runner("/Users/rahelmizrahi/Library/Mobile Documents/com~apple~CloudDocs/LPG/Exported Data/Raw/Lee1_all (1).xlsx")
         cd.run()
         
 
