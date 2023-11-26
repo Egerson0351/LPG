@@ -173,9 +173,9 @@ class cleanData2:
         print(self.Input)
         if str(self.Input).endswith("csv"):
             #check_encoding(self.Input)
-            self.raw_data = p.read_csv(self.Input)
+            self.raw_data = p.read_csv(self.Input, encoding="UTF-8")
         else:
-            self.raw_data = p.read_table(self.Input)
+            self.raw_data = p.read_table(self.Input, encoding="UTF-8")
             #raise Exception(f"Unknown data format >> {self.Input}")
             
 
@@ -268,7 +268,7 @@ class cleanData2:
             value = str(row[ii]).strip()
             if value.lower() == "nan":
                 value = ""
-                row[ii] = value
+            row[ii] = value
             
             if not bool(len(row[ii])):
                 found.append(False)
@@ -288,7 +288,7 @@ class cleanData2:
             subset = ["__Full Name__", "__Full_Situs__", "__Full_Mail__", "APN" ],
             keep="first"
             )
-        self.cleaned_data = self.cleaned_data.drop(columns = ["__Full Name__", "__Full_Situs__", "__Full_Mail__", "APN" ])
+        self.cleaned_data = self.cleaned_data.drop(columns = ["__Full Name__", "__Full_Situs__", "__Full_Mail__"])
         self.drop_log = self.drop_log.drop(columns = ["__Full Name__", "__Full_Situs__", "__Full_Mail__", "APN" ])
         
     def _update_cols(self):
@@ -513,18 +513,24 @@ def terminalRun():
         return True
     
     
+
+def check_ecoding(file):
+    with open(file, 'rb') as f:
+        result = chardet.detect(f.read())
     
+    return result['encoding']
     
 if __name__ == "__main__":
     
     #  ------ Debug
     #readintemplate("/Users/eitangerson/Desktop/LPG/SAMPLE-IMPORT-LIST.csv")
+    #print(check_ecoding("/Users/eitangerson/Desktop/LPG/Exported Data/Raw/CO_Park_80449-4.xlsx"))
     
     
     # ------ Debug
     print(__file__)
     if not terminalRun():
-        cd = CleanData_runner("Raw/Lee1_all.csv")
+        cd = CleanData_runner("/Users/eitangerson/Desktop/LPG/Exported Data/Raw/CO_Park_80449_utf8.csv")
         #cd = CleanData_runner("/Users/eitangerson/Desktop/LPG/Exported Data/Merged")
         cd.run()
         
