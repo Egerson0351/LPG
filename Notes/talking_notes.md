@@ -1,6 +1,6 @@
 # Vacant land Checklist
-1. Why are you selling this property?
-2. What is the size and dimensions of this parcel of land (in acres)?
+[ ] Why are you selling this property?
+[ ] What is the size and dimensions of this parcel of land (in acres)?
 3. Is there road access to this property (dirt or paved)?
 4. What utilities are available to this property (water, well, sewer, septic, electricity, natural gas)?
 5. Are there any other improvements on this property (fence, slab, shed, other)?
