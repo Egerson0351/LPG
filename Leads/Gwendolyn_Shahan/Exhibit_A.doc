@@ -1,0 +1,290 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+
+
+<style>
+.firstBr{
+		page-break-after: avoid;
+		margin-top:0px !important;
+		margin-bottom:0px !important;
+}
+<!-- 
+@page
+{
+    size:21cm 29.7cmt;  /* A4 */
+    margin:1cm 1cm 1cm 1cm; /* Margins: 2.5 cm on each side */
+    mso-page-orientation: portrait;  
+}
+@page Section1 { }
+div.Section1 { page:Section1; }
+--></style>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+<w:DoNotOptimizeForBrowser/>
+</w:WordDocument>
+</xml>
+<![endif]-->
+</head>
+<body lang=EN-US style="tab-interval:.5in; background-color: white !important">
+
+<div class=Section1>
+
+<div class="maindiv" style="page-break-after:always !important;">
+	<div class="content" style="page-break-after:always !important;">
+		<div id="offers-mails" style="page-break-after:always !important;">
+					<div class="go_big_title" style="text-align:center">EXHIBIT "A"</div>
+
+
+	<div class="go_apn_block">
+	<br class='firstBr'><br /><b>Assessor's Parcel Number:</b>&emsp;&emsp;25-43-23-c1-02300.a560<br /><br />
+		
+		<b>Short Legal Description:</b>&emsp;&emsp;Cape Coral Unit 36 Blk 2300A Pb 16 Pg 125 Lot 56<br /><br />				
+			</div>
+
+
+
+		</div>	
+	</div>	
+</div> <!-- end maindiv -->
+</div>	
+<style>
+.offer_end{
+	page-break-after:always;
+	border: none;
+	margin: 0px;
+}
+.menu, .footer, .print_link{
+	display: none;
+}
+.content{
+	width: 100%;
+}
+table.go_price{
+	margin-left: 20px; 
+	border: none;
+}
+.go_price_col1{
+	width: 300px; 
+	border: none;
+}
+@media print {
+    @page {
+      size: A4 portrait;
+    }
+  }
+.offer_end{
+	page-break-after:always;
+	border: none;
+	margin: 0px;
+}
+body{
+	font-family: arial;
+	font-size: 11pt;
+	background: none !important;
+	width: 500px;	
+}
+table, td, tr{
+	border: 0 none white !important;
+}
+a{
+	color: #0428DD;	
+}
+a:hover{
+	color: #4675E2;
+}
+p{
+	padding: 10px;
+	margin: 10px;
+}
+input{
+	padding: 8px;
+}
+li{
+	margin-bottom: 15px;
+}
+
+h1{
+	font-size: 14pt;
+	margin: 0px;
+	padding: 0px;
+}
+
+.red{
+	color: #CC0000;
+}
+	.proper{
+		text-transform: capitalize; 
+	}
+.maindiv{
+	width: 500px;
+	text-align: center;
+}
+.content{
+	text-align: left;
+	width: 500px;
+	margin: 0px auto;
+	background: #FFF;
+	padding: 10px 20px;
+	min-height: 400px;
+}
+
+div.action{
+	border: 4px solid #E54012;
+}
+div.action:hover{
+	border: 3px solid #34CE0E;
+}
+
+#pr12 input {
+	padding: 0 !important;
+}
+table.leads{
+	width: 100%;
+}
+.leads tr td, .leads tr th {
+	text-align: center;
+	padding:5px 10px;
+	font-size: 14px;
+}
+.leads tr td a {
+	color: black;
+	text-decoration: none;
+}
+.leads tr td a:hover {
+	text-decoration: underline;
+}
+.leads tr th {
+	background-color: #1D1D1D;
+	color: white;
+}
+div.leads_update{
+	text-align: right; 
+	margin-bottom: 10px;
+}	
+.date_string{
+	text-align: right;
+}
+#offers-mails div{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.offer_end{
+	border: 1px solid black; 
+	margin-top: 30px; 
+	margin-bottom: 30px; 
+}	
+.hp_ta{
+	height: 90px;
+	width: 500px; 
+	margin-left: 143px !important;
+}
+#h_pic{
+	margin-right: 294px !important;
+}
+.hp_ta2{
+	height: 90px;
+	width: 750px !important; 
+	margin: 10px 0px 10px 0px !important;
+}
+div.paginator {
+	margin-left: 20px; 
+}
+div.paginator a {
+	color: black; 
+}
+a.leads_links{
+	color: black; 
+	margin-right: 20px;
+}
+a.leads_links img{
+	margin-bottom: -4px;
+}	
+#edit_site_image{
+	max-width:300px;
+}
+.maindiv{
+	z-index: 1;
+}
+div.lead-offer{
+	margin: 0px;
+}
+
+#offers-mails {
+    overflow:hidden;
+    /* fix ie overflow issue */
+    position:relative;
+    width:760px;
+    height:1900px;
+}
+ 
+/* remove the list styles, width : item width * total items */ 
+#offers-mails ul {
+    position:relative;
+    left:0;
+    top:0;
+    list-style:none;
+    margin:0;
+    padding:0; 
+}
+/* width of the item, in this case I put 250x250x gif */
+#offers-mails li {
+    width:760px;
+    height:1750px;  
+    float:left;
+}
+
+.go_big_title{
+	font-weight: bold;
+	text-align: center;
+}
+.go_apn_block{
+	margin-left: 60px !important;
+}
+.go_sign1{
+	float: left; 
+	width: 100px !important; 
+	border-top: 1px solid black;
+}
+.go_sign2{
+	float: left; 
+	width: 100px !important; 
+	border-top: 1px solid black; 
+	text-align: center;
+}
+.go_side_title, .go_side_info{
+	float: left;
+}
+.go_side_title{
+	margin: 0px !important;
+}
+.go_side_info{
+	margin-left: 10px !important;
+}
+.go_sides{
+	clear: both;
+}
+.go_download_signs{
+	width: 80%;
+}
+.go_download_signs td{
+	height: 15px;
+}
+.sign_date{
+	text-align: center;
+}
+.signs_empty_col{
+	width: 70px;
+}
+.go_price{
+	margin-left: 10px;
+}
+.go_price_col1{
+	width: 60%;
+}
+</style>			
+</body>
+</html>
+	

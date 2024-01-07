@@ -1,0 +1,351 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+
+
+<style>
+.firstBr{
+		page-break-after: avoid;
+		margin-top:0px !important;
+		margin-bottom:0px !important;
+}
+<!-- 
+@page
+{
+    size:21cm 29.7cmt;  /* A4 */
+    margin:1cm 1cm 1cm 1cm; /* Margins: 2.5 cm on each side */
+    mso-page-orientation: portrait;  
+}
+@page Section1 { }
+div.Section1 { page:Section1; }
+--></style>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+<w:DoNotOptimizeForBrowser/>
+</w:WordDocument>
+</xml>
+<![endif]-->
+</head>
+<body lang=EN-US style="tab-interval:.5in; background-color: white !important">
+
+<div class=Section1>
+
+<div class="maindiv" style="page-break-after:always !important;">
+	<div class="content" style="page-break-after:always !important;">
+		<div id="offers-mails" style="page-break-after:always !important;">
+					<div class="go_big_title" style="text-align:center">SALE AGREEMENT FOR PROPERTY</div>
+
+	<p align="right">January 2, 2024</p>
+
+	<div class="go_sides">
+		<div class="go_side_title">1. <b>SELLER:</b></div>
+		<div class="go_side_info">Gwendolyn Shahan <br class='firstBr'>						406 Hawthorne Ave<br />Lancaster, OH 43130-1414		</div>
+	</div>
+	<br style="clear: both;"/>
+
+	<div class="go_sides">
+		<div class="go_side_title" style="padding-left: 15px;"><b>BUYER:</b></div>
+		<div class="go_side_info">Clear Path Land Trades LLC and/or Assignees<br/>
+			4904 S Power Rd, Ste 103-468<br>Mesa, AZ 85212 		</div>
+	</div>
+	
+	<p>The Seller and Buyer, above agree to sell and buy on the terms and conditions specified below, the property situated in the County of Lee, State of FL described as:</p>
+
+	<div class="go_apn_block"><b>Assessor's Parcel Number:</b> 25-43-23-c1-02300.a560<br /><br />
+	
+	<b>Legal Description:</b> (See Exhibit "A")<br/><br/>
+	</div>
+
+	<p>2. <b>PURCHASE PRICE:</b> $1,530.00 (Net to Seller), payable by Buyer in U.S. funds. All funds paid at closing must be paid by cashier's check.</p>
+
+	<p>3. <b>CASH:</b> Buyer will pay cash for the Property with no financing contingency.</p>
+
+	<p>4. <b>CLOSING DATE; OCCUPANCY:</b> This contract will be closed and the deed and possession delivered on or before 06/30/2024, unless extended by other provisions of this contract. Failure to close by said date will render the contract null and void and unenforceable. Buyer retains the right to cancel sale agreement any time for any reason.</p>
+
+	<p>5. <b>CLOSING PROCEDURE; COSTS:</b> <br/>
+	(a) Buyer will pay all costs of escrow, taxes, recording fees, and title insurance policy to said property. <br/>
+	(b) This sale will be closed by: a reputable Title Company, or a Notary Public.<br/>
+	(c) Buyer has the right to market property in any way. 
+	</p>
+
+	<p>6. <b>TITLE:</b> Seller will convey marketable title to the property by statutory Warranty/Grant Deed or Trustee, Personal Representative, or Guardian Deed as appropriate to the Seller's status, being free of all liens and encumbrances of record, except for unpaid taxes.</p>
+
+	<p>7. <b>OFFER AND ACCEPTANCE: This offer shall automatically expire on
+	01/12/2024 at 5:00 pm <br />
+	(Eastern Standard Time)</b>, if not accepted within that time. This offer may only be accepted by Seller in writing if postmarked by the above date.</p>
+
+	<p>This agreement is binding on the heirs, administrators, executors, personal representatives, successors and assigns of Buyer and Seller.   By signing below, each party accepts this offer.</p><br/>
+
+	<table class="go_price" border="0" cellpadding="0" class="go_download_signs" style="width: 100%">
+		<tr>
+			<td>___________________________________</td>
+			<td class="signs_empty_col"></td>
+			<td>______________</td></tr>
+		<tr>
+			<td>Seller</td>
+			<td></td>
+			<td class="sign_date">Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		</tr>
+		<tr>
+			<td>___________________________________</td>
+			<td></td>
+			<td>______________</td></tr>
+		<tr>
+			<td>Seller</td>
+			<td></td>
+			<td class="sign_date">Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		</tr>
+										<tr>
+			<td>___________________________________</td>
+			<td></td>
+			<td>______________</td></tr>
+		<tr>
+			<td>Eitan Gerson, Manager of Clear Path Land Trades LLC</td>
+			<td></td>
+			<td class="sign_date">Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		</tr>
+	</table>
+		</div>	
+	</div>	
+</div> <!-- end maindiv -->
+</div>	
+<style>
+.offer_end{
+	page-break-after:always;
+	border: none;
+	margin: 0px;
+}
+.menu, .footer, .print_link{
+	display: none;
+}
+.content{
+	width: 100%;
+}
+table.go_price{
+	margin-left: 20px; 
+	border: none;
+}
+.go_price_col1{
+	width: 300px; 
+	border: none;
+}
+@media print {
+    @page {
+      size: A4 portrait;
+    }
+  }
+.offer_end{
+	page-break-after:always;
+	border: none;
+	margin: 0px;
+}
+body{
+	font-family: arial;
+	font-size: 11pt;
+	background: none !important;
+	width: 500px;	
+}
+table, td, tr{
+	border: 0 none white !important;
+}
+a{
+	color: #0428DD;	
+}
+a:hover{
+	color: #4675E2;
+}
+p{
+	padding: 10px;
+	margin: 10px;
+}
+input{
+	padding: 8px;
+}
+li{
+	margin-bottom: 15px;
+}
+
+h1{
+	font-size: 14pt;
+	margin: 0px;
+	padding: 0px;
+}
+
+.red{
+	color: #CC0000;
+}
+	.proper{
+		text-transform: capitalize; 
+	}
+.maindiv{
+	width: 500px;
+	text-align: center;
+}
+.content{
+	text-align: left;
+	width: 500px;
+	margin: 0px auto;
+	background: #FFF;
+	padding: 10px 20px;
+	min-height: 400px;
+}
+
+div.action{
+	border: 4px solid #E54012;
+}
+div.action:hover{
+	border: 3px solid #34CE0E;
+}
+
+#pr12 input {
+	padding: 0 !important;
+}
+table.leads{
+	width: 100%;
+}
+.leads tr td, .leads tr th {
+	text-align: center;
+	padding:5px 10px;
+	font-size: 14px;
+}
+.leads tr td a {
+	color: black;
+	text-decoration: none;
+}
+.leads tr td a:hover {
+	text-decoration: underline;
+}
+.leads tr th {
+	background-color: #1D1D1D;
+	color: white;
+}
+div.leads_update{
+	text-align: right; 
+	margin-bottom: 10px;
+}	
+.date_string{
+	text-align: right;
+}
+#offers-mails div{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.offer_end{
+	border: 1px solid black; 
+	margin-top: 30px; 
+	margin-bottom: 30px; 
+}	
+.hp_ta{
+	height: 90px;
+	width: 500px; 
+	margin-left: 143px !important;
+}
+#h_pic{
+	margin-right: 294px !important;
+}
+.hp_ta2{
+	height: 90px;
+	width: 750px !important; 
+	margin: 10px 0px 10px 0px !important;
+}
+div.paginator {
+	margin-left: 20px; 
+}
+div.paginator a {
+	color: black; 
+}
+a.leads_links{
+	color: black; 
+	margin-right: 20px;
+}
+a.leads_links img{
+	margin-bottom: -4px;
+}	
+#edit_site_image{
+	max-width:300px;
+}
+.maindiv{
+	z-index: 1;
+}
+div.lead-offer{
+	margin: 0px;
+}
+
+#offers-mails {
+    overflow:hidden;
+    /* fix ie overflow issue */
+    position:relative;
+    width:760px;
+    height:1900px;
+}
+ 
+/* remove the list styles, width : item width * total items */ 
+#offers-mails ul {
+    position:relative;
+    left:0;
+    top:0;
+    list-style:none;
+    margin:0;
+    padding:0; 
+}
+/* width of the item, in this case I put 250x250x gif */
+#offers-mails li {
+    width:760px;
+    height:1750px;  
+    float:left;
+}
+
+.go_big_title{
+	font-weight: bold;
+	text-align: center;
+}
+.go_apn_block{
+	margin-left: 60px !important;
+}
+.go_sign1{
+	float: left; 
+	width: 100px !important; 
+	border-top: 1px solid black;
+}
+.go_sign2{
+	float: left; 
+	width: 100px !important; 
+	border-top: 1px solid black; 
+	text-align: center;
+}
+.go_side_title, .go_side_info{
+	float: left;
+}
+.go_side_title{
+	margin: 0px !important;
+}
+.go_side_info{
+	margin-left: 10px !important;
+}
+.go_sides{
+	clear: both;
+}
+.go_download_signs{
+	width: 80%;
+}
+.go_download_signs td{
+	height: 15px;
+}
+.sign_date{
+	text-align: center;
+}
+.signs_empty_col{
+	width: 70px;
+}
+.go_price{
+	margin-left: 10px;
+}
+.go_price_col1{
+	width: 60%;
+}
+</style>			
+</body>
+</html>
+	
